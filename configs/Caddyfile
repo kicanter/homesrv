@@ -1,22 +1,44 @@
 # Personal site
-{$SITE_DOMAIN} {
-    root * /srv/www/{$SITE_DOMAIN}/src
+(main_site) {
+    root * /srv/www/{$SITE_DOMAIN}/main/src
     handle {
         file_server
     }
 
     @publicFile file {
-        root /srv/www/{$SITE_DOMAIN}/public
+        root /srv/www/{$SITE_DOMAIN}/main/public
     }
     handle @publicFile {
-        root * /srv/www/{$SITE_DOMAIN}/public
+        root * /srv/www/{$SITE_DOMAIN}/main/public
         file_server
     }
 
     handle_errors {
         @404 expression {err.status_code} == 404
         handle @404 {
-            root * /srv/www/{$SITE_DOMAIN}/src
+            root * /srv/www/{$SITE_DOMAIN}/main/src
+            rewrite * /404.html
+            file_server
+        }
+    }
+}
+
+{$SITE_DOMAIN} {
+    import main_site
+}
+
+v2.{$SITE_DOMAIN} {
+    import main_site
+}
+
+v1.{$SITE_DOMAIN} {
+    root * /srv/www/{$SITE_DOMAIN}/v1/out
+    file_server
+
+    handle_errors {
+        $404 expression {err.status_code} == 404
+        handle @404 {
+            root * /srv/www/{$SITE_DOMAIN}/v1/out
             rewrite * /404.html
             file_server
         }
@@ -24,6 +46,6 @@
 }
 
 # Forgejo instance
-{$FORGEJO_DOMAIN} {
+git.{$SITE_DOMAIN} {
     reverse_proxy forgejo:3000
 }

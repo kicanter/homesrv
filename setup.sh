@@ -62,7 +62,6 @@ cp .env $STACK_DIR/.env
 sed -i "s/PORKBUN_API_KEY_PLACEHOLDER/${PORKBUN_API_KEY}/" $STACK_DIR/ddclient/ddclient.conf
 sed -i "s/PORKBUN_SECRET_KEY_PLACEHOLDER/${PORKBUN_SECRET_KEY}/" $STACK_DIR/ddclient/ddclient.conf
 sed -i "s/DOMAIN_PLACEHOLDER/${SITE_DOMAIN}/" $STACK_DIR/ddclient/ddclient.conf
-sed -i "s/FORGEJO_PLACEHOLDER/${FORGEJO_DOMAIN}/" $STACK_DIR/ddclient/ddclient.conf
 
 echo -e "${BLUE}Hardening SSH...${NC}"
 # replace placeholder with env vars in sshd_config

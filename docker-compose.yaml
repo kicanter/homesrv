@@ -8,7 +8,6 @@ services:
       - "443:443"
     environment:
       - SITE_DOMAIN=${SITE_DOMAIN}
-      - FORGEJO_DOMAIN=${FORGEJO_DOMAIN}
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./caddy/data:/data
