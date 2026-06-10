@@ -10,10 +10,10 @@
 
 ## tools used
 * [`caddy`](https://github.com/caddyserver/caddy) - Reverse proxy
-* [`forgejo`](https://codeberg.org/forgejo/forgejo) - Reverse proxy
+* [`forgejo`](https://codeberg.org/forgejo/forgejo) - FOSS git host
 * [`ddclient`](https://github.com/ddclient/ddclient) - Dynamic DNS
 * [`fail2ban`](https://github.com/fail2ban/fail2ban) - Ban suspicious IPs
-* [`docker`](https://github.com/docker) - Forgejo containerization
+* [`docker`](https://github.com/docker) - Forgejo, Caddy, and ddclient containerization
 
 ## pre-deployment
 1. port forward 80 (http), 443 (https), 22 (or custom port for direct ssh), and 2222 (alt ssh for forgejo ssh git interaction) via router config
